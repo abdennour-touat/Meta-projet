@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25973f5d-366a-44cc-93fc-dad51f19f35a" name="Changes" comment="removing the exo1">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +105,7 @@
       <workItem from="1677171600372" duration="17149000" />
       <workItem from="1677486830451" duration="4182000" />
       <workItem from="1677687567393" duration="1797000" />
-      <workItem from="1677691251253" duration="2172000" />
+      <workItem from="1677691251253" duration="2605000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1677489730062</created>
