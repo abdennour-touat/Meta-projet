@@ -1,18 +1,14 @@
 package Main;
 
-import Main.Node;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Stack;
 //***Todo nombre de noeud generé et nbr de noeud develope
 public class BFS {
-    private Queue<Node> ouvert = new LinkedList<>();
-    private ArrayList<Node> ferme= new ArrayList<Node>();
-     private ArrayList<Integer> bestSol=new ArrayList<Integer>();
+//    private Queue<Node> ouvert = new LinkedList<>();
+    private Stack<Node> pile = new Stack<>();
+//    private ArrayList<Node> ferme= new ArrayList<Node>();
+     private int[] bestSol=new int[Node.n];
 
-     public ArrayList<Integer> getBestSol(){
+     public int[] getBestSol(){
          return this.bestSol;
      }
 
@@ -21,16 +17,19 @@ public class BFS {
 
         Node d=G , n;
 
-        ouvert.add(d);
+//        ouvert.add(d);
+        pile.add(d);
 
-        while (!ouvert.isEmpty()){
+//        while (!ouvert.isEmpty()){
+            while (!pile.isEmpty()){
 
-            n=ouvert.poll( );
-            ferme.add(n);
+//            n=ouvert.poll( );
+                n=pile.pop();
+//            ferme.add(n);
             if(n.verification())
             {
 
-                Node k = new Node(bestSol,null);
+                Node k = new Node(bestSol);
                 if (n.evaluation() < k.evaluation()) {
                     bestSol=n.getEtat()  ;
                 }
@@ -38,11 +37,12 @@ public class BFS {
 
             if (n.successeurs()) {
 
-                for (Node enfant : n.getNoeudEnfants()) {
+//                for (Node enfant : n.getNoeudEnfants()) {
 
-                    ouvert.add(enfant);
+//                    ouvert.addAll(n.getNoeudEnfants());
+                pile.addAll(n.getNoeudEnfants());
 
-                }
+//                }
             }
         }
     }

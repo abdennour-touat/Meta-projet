@@ -1,7 +1,6 @@
 package GUI;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import static java.lang.Integer.parseInt;
 
@@ -12,9 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
         import javafx.scene.control.*;
         import javafx.scene.layout.*;
-        import javafx.scene.paint.Color;
-        import javafx.scene.shape.Rectangle;
-        import javafx.scene.text.Text;
+import javafx.scene.text.Text;
         import javafx.stage.Stage;
 
 
@@ -91,20 +88,20 @@ public class  Interface  extends Application {
             System.out.println("Text entered: " + a); // Use the text field value as needed
             BFS algoBfs = new BFS();
             Main.Node.n = a;
-            algoBfs.Recherche(new Main.Node(new ArrayList<Integer>(), null));
+            algoBfs.Recherche(new Main.Node(new int[0]));
 
-            ChessBoard chessBoard = new ChessBoard(a, algoBfs.getBestSol());
+//            ChessBoard chessBoard = new ChessBoard(a, algoBfs.getBestSol());
 
             ScrollPane sp= (ScrollPane) scene.lookup("#t");
             Node content = sp.getContent();
 
             if (content instanceof AnchorPane) {
                 AnchorPane ap = (AnchorPane) content;
-                ap.setTopAnchor(chessBoard, 0.0);
-                ap.setBottomAnchor(chessBoard, 0.0);
-                ap.setRightAnchor(chessBoard, 0.0);
-                ap.setLeftAnchor(chessBoard, 0.0);
-                ap.getChildren().add(chessBoard);
+//                ap.setTopAnchor(chessBoard, 0.0);
+//                ap.setBottomAnchor(chessBoard, 0.0);
+//                ap.setRightAnchor(chessBoard, 0.0);
+//                ap.setLeftAnchor(chessBoard, 0.0);
+//                ap.getChildren().add(chessBoard);
             }
         });
 
