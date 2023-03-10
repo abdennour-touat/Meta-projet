@@ -6,11 +6,9 @@ public class Node {
 
         public static int n ;
         private ArrayList<Integer> Etat ;
-//        private ArrayList<Node> NoeudsEnfants=new ArrayList<Node>();
+
 //        private Node NoeudParent;
         private int[] etat ;
-//        ArrayList<Integer> etat;
-//        private final Set<Node> NoeudsEnfants=new HashSet<Node>();
 
     public Boolean verification(){
             if (etat.length!= n) return false;
@@ -23,21 +21,17 @@ public class Node {
             }
             return true;
         }
+
         public int evaluation(){
             Boolean b;
             if(etat.length == 0) {return n;}
             int cpt=0,x,l,j,p;
             int[][] M = new int[n][n];
-//            System.out.printli(M[3][4]);
-            //array is already initialized with 0s already
             for (int i = 0; i< etat.length; i++){
                 M[i][etat[i]] = 1;
             }
-//            for (int i = 0; i < n; i++) {
-//                for (int m = 0; m < n; m++) {
-//                        M[i][m] = (m == etat[i])? 1 : 0;
-//                }
-//            }
+
+
             for (int i = 0; i < n; i++) {
                 x = etat[i];
                 ////////
@@ -99,6 +93,7 @@ public class Node {
         copy[original.length] = newElement; // add new element to the end
         return copy;
     }
+
         public Node(int[] etat) {
             this.etat = etat;
         }

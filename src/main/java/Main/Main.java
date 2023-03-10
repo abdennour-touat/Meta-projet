@@ -7,13 +7,8 @@ import java.util.concurrent.TimeUnit;
 public class Main {
 
     public static void main(String[] args) {
-        //subset problem.
-        System.out.println("hello");
-        //model the problem
-        //  instantiate the problem
-        // verification algorithm
-        //
 
+        System.out.println("hello");
         BFS bfs = new BFS();
         Node.n =10;
         long start = System.nanoTime();
