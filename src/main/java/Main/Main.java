@@ -15,12 +15,12 @@ public class Main {
         //
 
         BFS bfs = new BFS();
-        Node.n =6;
+        Node.n =12;
         bfs.Recherche(new Node(new ArrayList<Integer>(),null));
 
 
-        Node a =new Node(bfs.BestSol,null);
-        System.out.println(bfs.BestSol.toString()+" evaluation : "+a.evaluation());
+        Node a =new Node(bfs.getBestSol(),null);
+        System.out.println(bfs.getBestSol().toString()+" evaluation : "+a.evaluation());
 
     }
 }

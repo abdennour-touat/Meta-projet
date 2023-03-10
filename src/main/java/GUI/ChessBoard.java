@@ -12,9 +12,12 @@ import javafx.scene.shape.SVGPath;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 class ChessBoard extends GridPane {
-    public ChessBoard(int size) {
+
+    public ChessBoard(int size, ArrayList<Integer> sol) {
+        System.out.println(sol);
         //assets..
         var cream = Color.web("#ebebd3");
         var green= Color.web("#749454");
@@ -24,11 +27,32 @@ class ChessBoard extends GridPane {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 Rectangle bg = new Rectangle(squareSize , squareSize );
-                Rectangle square = new Rectangle(squareSize -4, squareSize -4);
-                square.setFill(blackQueenImg);
+                StackPane pane = new StackPane(bg);
+                if (sol.get(i) == j){
+                    Rectangle square = new Rectangle(squareSize -4, squareSize -4);
+                    square.setFill(blackQueenImg);
+                    pane.getChildren().add(square);
+                }
                 bg.setFill((i + j) % 2 == 0 ? cream : green);
-                StackPane pane = new StackPane(bg, square);
                 add(pane, i, j);
+            }
+        }
+    }
+    public ChessBoard(int size) {
+        //assets..
+        var cream = Color.web("#ebebd3");
+        var green= Color.web("#749454");
+//        var blackQueenImg = new ImagePattern(new Image("/blackqueen.png"));
+        int squareSize = 50;
+
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                Rectangle bg = new Rectangle(squareSize , squareSize );
+//                Rectangle square = new Rectangle(squareSize -4, squareSize -4);
+//                square.setFill(blackQueenImg);
+                bg.setFill((i + j) % 2 == 0 ? cream : green);
+//                StackPane pane = new StackPane(bg, square);
+                add(bg, i, j);
             }
         }
     }

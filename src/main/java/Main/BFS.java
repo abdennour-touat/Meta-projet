@@ -10,7 +10,11 @@ import java.util.Stack;
 public class BFS {
     private Queue<Node> ouvert = new LinkedList<>();
     private ArrayList<Node> ferme= new ArrayList<Node>();
-     ArrayList<Integer> BestSol=new ArrayList<Integer>();
+     private ArrayList<Integer> bestSol=new ArrayList<Integer>();
+
+     public ArrayList<Integer> getBestSol(){
+         return this.bestSol;
+     }
 
     public BFS() {}
     public void Recherche( Node G){
@@ -26,9 +30,9 @@ public class BFS {
             if(n.verification())
             {
 
-                Node k = new Node(BestSol,null);
+                Node k = new Node(bestSol,null);
                 if (n.evaluation() < k.evaluation()) {
-                    BestSol=n.getEtat()  ;
+                    bestSol=n.getEtat()  ;
                 }
             }
 

@@ -1,10 +1,12 @@
 package GUI;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import static java.lang.Integer.parseInt;
 
-        import javafx.application.Application;
+import Main.BFS;
+import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
         import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -42,8 +44,25 @@ public class  Interface  extends Application {
         MenuItem dfs=choix.getItems().get(1);
         MenuItem h1=choix.getItems().get(2);
         MenuItem h2=choix.getItems().get(3);
+        OK.setOnAction(event -> {
+            String newText = textField.getText(); // Retrieve the updated value of the text field
+            /***todo add exception user**/
+            int a = parseInt(newText);
+            System.out.println("Text entered: " + a); // Use the text field value as needed
 
-        bfs.setOnAction(event -> {
+            ChessBoard chessBoard = new ChessBoard(a);
+
+            ScrollPane sp= (ScrollPane) scene.lookup("#t");
+            Node content = sp.getContent();
+
+            if (content instanceof AnchorPane) {
+                AnchorPane ap = (AnchorPane) content;
+                ap.setTopAnchor(chessBoard, 0.0);
+                ap.setBottomAnchor(chessBoard, 0.0);
+                ap.setRightAnchor(chessBoard, 0.0);
+                ap.setLeftAnchor(chessBoard, 0.0);
+                ap.getChildren().add(chessBoard);
+            }
             System.out.println("lancer bfs");
 
         });
@@ -65,13 +84,16 @@ public class  Interface  extends Application {
 
 
 
-        OK.setOnAction(event -> {
+        bfs.setOnAction(event -> {
             String newText = textField.getText(); // Retrieve the updated value of the text field
             /***todo add exception user**/
             int a = parseInt(newText);
             System.out.println("Text entered: " + a); // Use the text field value as needed
+            BFS algoBfs = new BFS();
+            Main.Node.n = a;
+            algoBfs.Recherche(new Main.Node(new ArrayList<Integer>(), null));
 
-            ChessBoard chessBoard = new ChessBoard(a);
+            ChessBoard chessBoard = new ChessBoard(a, algoBfs.getBestSol());
 
             ScrollPane sp= (ScrollPane) scene.lookup("#t");
             Node content = sp.getContent();
@@ -84,9 +106,6 @@ public class  Interface  extends Application {
                 ap.setLeftAnchor(chessBoard, 0.0);
                 ap.getChildren().add(chessBoard);
             }
-
-
-
         });
 
     }
