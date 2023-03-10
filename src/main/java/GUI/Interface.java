@@ -8,7 +8,8 @@ import Main.BFS;
 import Main.DFS;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-        import javafx.scene.Node;
+import javafx.scene.Camera;
+import javafx.scene.Node;
 import javafx.scene.Scene;
         import javafx.scene.control.*;
         import javafx.scene.layout.*;
@@ -52,12 +53,13 @@ public class  Interface  extends Application {
         MenuItem h1=choix.getItems().get(2);
         MenuItem h2=choix.getItems().get(3);
 
+
         OK.setOnAction(event -> {
-            /***todo add exception user**/
-            taille = parseInt(textField.getText());
+
         });
 
         dfs.setOnAction(event -> {
+
             System.out.println("lancer dfs");
             DFS algoDfs = new DFS();
             Main.Node.n = taille ;
@@ -87,13 +89,27 @@ public class  Interface  extends Application {
                 ap.getChildren().add(chessBoard);
             }
 
+
         });
         h2.setOnAction(event -> {
-            System.out.println("lancer h2");
+            choix.setText(h2.getText());
+        });
+
+
+        Go.setOnAction(event -> {
+      
+
+        textField.textProperty().addListener((observable, oldValue, newValue) -> {
+//            if (newValue.length() > 10){
+//                textField.setText("");
+//            }
+            if (!newValue.matches("\\d*")) {
+                textField.setText(newValue.replaceAll("[^\\d]", ""));
+            }
         });
 
         Go.setOnAction(event -> {
-            System.out.println("Button clicked!");
+                System.out.println("Button clicked!");
 if(i!=0){ chessBoard.getChildren().clear();}
           chessBoard= new ChessBoard(taille, Sol);
           sp= (ScrollPane) scene.lookup("#t");
@@ -108,6 +124,45 @@ if(i!=0){ chessBoard.getChildren().clear();}
                 ap.getChildren().add(chessBoard);
             }
                 i++;
+            String newText = textField.getText(); // Retrieve the updated value of the text field
+            /***todo add exception user**/
+            int a = parseInt(newText);
+            Main.Node.n = a;
+            int[] bestSol  ;
+
+            ScrollPane sp= (ScrollPane) scene.lookup("#t");
+            Node content = sp.getContent();
+            switch (choix.getText()){
+                case "DFS":
+                    DFS algoDfs = new DFS();
+                    algoDfs.Recherche(new Main.Node(new int[0]));
+                    bestSol = algoDfs.getBestSol();
+                    break;
+                case "BFS":
+                    BFS algoBfs = new BFS();
+                    algoBfs.Recherche(new Main.Node(new int[0]));
+                    bestSol = algoBfs.getBestSol();
+                    break;
+                default:
+                    bestSol = new int[a];
+            }
+            ChessBoard chessBoard = new ChessBoard(a, bestSol);
+
+            if (content instanceof AnchorPane) {
+                AnchorPane ap = (AnchorPane) content;
+                AnchorPane.setTopAnchor(chessBoard, 0.0);
+                AnchorPane.setBottomAnchor(chessBoard, 0.0);
+                AnchorPane.setRightAnchor(chessBoard, 0.0);
+                AnchorPane.setLeftAnchor(chessBoard, 0.0);
+                ap.getChildren().add(chessBoard);
+            }
+            System.out.println("Button clicked!");
+
+            //lancer l algo
+        });
+
+        bfs.setOnAction(event -> {
+            choix.setText(bfs.getText());
 
         });
 

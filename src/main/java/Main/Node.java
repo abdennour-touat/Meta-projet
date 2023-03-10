@@ -5,10 +5,10 @@ import java.util.*;
 public class Node {
 
         public static int n ;
-        private ArrayList<Integer> Etat ;
 
-//        private Node NoeudParent;
+
         private int[] etat ;
+
 
     public Boolean verification(){
             if (etat.length!= n) return false;
@@ -27,9 +27,12 @@ public class Node {
             if(etat.length == 0) {return n;}
             int cpt=0,x,l,j,p;
             int[][] M = new int[n][n];
+
+            //array is already initialized with 0s already
             for (int i = 0; i< etat.length; i++){
                 M[i][etat[i]] = 1;
             }
+  
 
 
             for (int i = 0; i < n; i++) {
@@ -74,6 +77,7 @@ public class Node {
             if(etat.length == n) return false;
 
             return true;
+
         }
 
         private boolean contains(int[] list, int val){
@@ -93,13 +97,13 @@ public class Node {
         copy[original.length] = newElement; // add new element to the end
         return copy;
     }
-
         public Node(int[] etat) {
             this.etat = etat;
         }
         public int[] getEtat() {
             return etat;
         }
+
         public Set<Node> getNoeudEnfants() {
             Set<Node> childs  = new HashSet<Node>();
             for(int i=0;i<n;i++) {

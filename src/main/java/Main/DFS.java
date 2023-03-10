@@ -31,8 +31,10 @@ public class DFS {
             if(n.verification())
             {
 
+
                 int eva = n.evaluation();
                 if (eva < bestSolEvaluation) {
+
                     bestSol=n.getEtat()  ;
                     bestSolEvaluation = eva;
                 }
@@ -41,9 +43,11 @@ public class DFS {
             if (n.successeurs()) {
 
 
+
                 pile.addAll(n.getNoeudEnfants());
 
             }
         }
+
     }
 }
