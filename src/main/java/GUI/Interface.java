@@ -5,6 +5,7 @@ import java.io.IOException;
 import static java.lang.Integer.parseInt;
 
 import Main.BFS;
+import Main.DFS;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
         import javafx.scene.Node;
@@ -65,6 +66,28 @@ public class  Interface  extends Application {
         });
         dfs.setOnAction(event -> {
             System.out.println("lancer dfs");
+
+            String newText = textField.getText(); // Retrieve the updated value of the text field
+            /***todo add exception user**/
+            int a = parseInt(newText);
+            System.out.println("Text entered: " + a); // Use the text field value as needed
+            DFS algoBfs = new DFS();
+            Main.Node.n = a;
+            algoBfs.Recherche(new Main.Node(new int[0]));
+
+            ChessBoard chessBoard = new ChessBoard(a, algoBfs.getBestSol());
+
+            ScrollPane sp= (ScrollPane) scene.lookup("#t");
+            Node content = sp.getContent();
+
+            if (content instanceof AnchorPane) {
+                AnchorPane ap = (AnchorPane) content;
+                ap.setTopAnchor(chessBoard, 0.0);
+                ap.setBottomAnchor(chessBoard, 0.0);
+                ap.setRightAnchor(chessBoard, 0.0);
+                ap.setLeftAnchor(chessBoard, 0.0);
+                ap.getChildren().add(chessBoard);
+            }
         });
         h1.setOnAction(event -> {
             System.out.println("lancer h1");
@@ -79,8 +102,6 @@ public class  Interface  extends Application {
             //lancer l algo
         });
 
-
-
         bfs.setOnAction(event -> {
             String newText = textField.getText(); // Retrieve the updated value of the text field
             /***todo add exception user**/
@@ -90,18 +111,18 @@ public class  Interface  extends Application {
             Main.Node.n = a;
             algoBfs.Recherche(new Main.Node(new int[0]));
 
-//            ChessBoard chessBoard = new ChessBoard(a, algoBfs.getBestSol());
+            ChessBoard chessBoard = new ChessBoard(a, algoBfs.getBestSol());
 
             ScrollPane sp= (ScrollPane) scene.lookup("#t");
             Node content = sp.getContent();
 
             if (content instanceof AnchorPane) {
                 AnchorPane ap = (AnchorPane) content;
-//                ap.setTopAnchor(chessBoard, 0.0);
-//                ap.setBottomAnchor(chessBoard, 0.0);
-//                ap.setRightAnchor(chessBoard, 0.0);
-//                ap.setLeftAnchor(chessBoard, 0.0);
-//                ap.getChildren().add(chessBoard);
+                ap.setTopAnchor(chessBoard, 0.0);
+                ap.setBottomAnchor(chessBoard, 0.0);
+                ap.setRightAnchor(chessBoard, 0.0);
+                ap.setLeftAnchor(chessBoard, 0.0);
+                ap.getChildren().add(chessBoard);
             }
         });
 

@@ -8,6 +8,7 @@ public class BFS {
     private Queue<Node> ouvert = new LinkedList<>();
 //    private ArrayList<Node> ferme= new ArrayList<Node>();
      private int[] bestSol=new int[Node.n];
+     private int bestSolEvaluation = Integer.MAX_VALUE;
 
      public int[] getBestSol(){
          return this.bestSol;
@@ -27,15 +28,15 @@ public class BFS {
             if(n.verification())
             {
 
-                Node k = new Node(bestSol);
-                if (n.evaluation() < k.evaluation()) {
+//                Node k = new Node(bestSol);
+                int eva = n.evaluation();
+                if (eva < bestSolEvaluation) {
                     bestSol=n.getEtat()  ;
+                    bestSolEvaluation = eva;
                 }
             }
 
             if (n.successeurs()) {
-
-
                     ouvert.addAll(n.getNoeudEnfants());
 
             }

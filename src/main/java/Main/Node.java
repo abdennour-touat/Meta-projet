@@ -28,11 +28,16 @@ public class Node {
             if(etat.length == 0) {return n;}
             int cpt=0,x,l,j,p;
             int[][] M = new int[n][n];
-            for (int i = 0; i < n; i++) {
-                for (int m = 0; m < n; m++) {
-                        M[i][m] = (m == etat[i])? 1 : 0;
-                }
+//            System.out.printli(M[3][4]);
+            //array is already initialized with 0s already
+            for (int i = 0; i< etat.length; i++){
+                M[i][etat[i]] = 1;
             }
+//            for (int i = 0; i < n; i++) {
+//                for (int m = 0; m < n; m++) {
+//                        M[i][m] = (m == etat[i])? 1 : 0;
+//                }
+//            }
             for (int i = 0; i < n; i++) {
                 x = etat[i];
                 ////////
@@ -73,15 +78,7 @@ public class Node {
         public Boolean successeurs(){
 
             if(etat.length == n) return false;
-//            for(int i=0;i<n;i++) {
-//                if(!contains(etat,i)){
-////                    int[] a = etat.clone();
-//                    int[] a = copyWithIncreasedSize(etat, i);
-////                    System.out.println(etat.length);
-////                    a[etat.length + 1] =i;
-//                    NoeudsEnfants.add(new Node( a));
-//                }
-//            }
+
             return true;
         }
 

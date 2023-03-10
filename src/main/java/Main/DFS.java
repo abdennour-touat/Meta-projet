@@ -12,6 +12,7 @@ public class DFS {
 //    private ArrayList<Node> ferme= new ArrayList<Node>();
     private int[] bestSol=new int[Node.n];
 
+    private int bestSolEvaluation = Integer.MAX_VALUE;
     public int[] getBestSol(){
         return this.bestSol;
     }
@@ -30,9 +31,10 @@ public class DFS {
             if(n.verification())
             {
 
-                Node k = new Node(bestSol);
-                if (n.evaluation() < k.evaluation()) {
+                int eva = n.evaluation();
+                if (eva < bestSolEvaluation) {
                     bestSol=n.getEtat()  ;
+                    bestSolEvaluation = eva;
                 }
             }
 

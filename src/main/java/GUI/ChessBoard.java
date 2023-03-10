@@ -7,14 +7,15 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 class ChessBoard extends GridPane {
 
-    public ChessBoard(int size, ArrayList<Integer> sol) {
-        System.out.println(sol);
+    public ChessBoard(int size, int[] sol) {
         //assets..
         var cream = Color.web("#ebebd3");
         var green= Color.web("#749454");
+        System.out.println(Arrays.toString(sol));
         var blackQueenImg = new ImagePattern(new Image("/blackqueen.png"));
         int squareSize = 50;
 
@@ -22,7 +23,8 @@ class ChessBoard extends GridPane {
             for (int j = 0; j < size; j++) {
                 Rectangle bg = new Rectangle(squareSize , squareSize );
                 StackPane pane = new StackPane(bg);
-                if (sol.get(i) == j){
+                if (sol[i] == j){
+                    System.out.println(sol[i]);
                     Rectangle square = new Rectangle(squareSize -4, squareSize -4);
                     square.setFill(blackQueenImg);
                     pane.getChildren().add(square);
