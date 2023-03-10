@@ -18,13 +18,12 @@ class ChessBoard extends GridPane {
         //assets..
         var cream = Color.web("#ebebd3");
         var green= Color.web("#749454");
-        var whiteQueenImg = new ImagePattern(new Image("/queenblanch.png"));
-        var blackQueenImg = new ImagePattern(new Image("/queenblck_1.png"));
+        var blackQueenImg = new ImagePattern(new Image("/blackqueen.png"));
         int squareSize = 50;
 
-        Rectangle bg = new Rectangle(squareSize , squareSize );
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
+                Rectangle bg = new Rectangle(squareSize , squareSize );
                 Rectangle square = new Rectangle(squareSize -4, squareSize -4);
                 square.setFill(blackQueenImg);
                 bg.setFill((i + j) % 2 == 0 ? cream : green);
