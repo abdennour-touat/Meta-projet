@@ -5,6 +5,9 @@ import java.util.*;
 public class Node {
 
         public static int n ;
+        private ArrayList<Integer> Etat ;
+//        private ArrayList<Node> NoeudsEnfants=new ArrayList<Node>();
+//        private Node NoeudParent;
         private int[] etat ;
 //        ArrayList<Integer> etat;
 //        private final Set<Node> NoeudsEnfants=new HashSet<Node>();
