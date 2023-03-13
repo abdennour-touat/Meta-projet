@@ -1,5 +1,6 @@
 package Main;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class Node {
@@ -7,11 +8,15 @@ public class Node {
         public static int n ;
 
 
-        private int[] etat ;
+        private final int[] etat ;
+
+
+
 
 
     public Boolean verification(){
-            if (etat.length!= n) return false;
+            if (etat.length!= n) {
+                return false;};
 //            System.out.println(etat);
             int i=0;
 
@@ -20,6 +25,19 @@ public class Node {
                 i++;
             }
             return true;
+        }
+        public Boolean evaluation1(){
+        for (int i = 0; i< n-1; i++){
+            for (int j = i+1; j< etat.length; j++) {
+                if (etat[i] == etat[j]){
+
+                    System.out.println(Arrays.toString(new String[]{"etat " + Arrays.toString(etat) + " i: " + i+" j: "+j+" etat[i] "+ etat[i]}));
+                    return false;}
+
+                if (j-i == Math.abs(etat[i] - etat[j])) return false;
+            }
+        }
+        return true;
         }
 
         public int evaluation(){
@@ -113,7 +131,5 @@ public class Node {
             }
             return childs;
         }
-
-
 }
 

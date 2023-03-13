@@ -25,10 +25,14 @@ public  int nbrNdev=0,nbrNgen =1;
                 n=pile.pop();
 //            ferme.add(n);
 
-                if(n.verification() && n.evaluation()==0){ return n.getEtat();}
+//                if (n.evaluation1()) return n.getEtat();
+                if(n.verification() ){
+                   if (n.evaluation1()){ return n.getEtat();}
+                }
 
 
-            if (n.successeurs()) {
+
+            if (n.evaluation1()) {
 
                 sizeInitial =pile.size();
                 pile.addAll(n.getNoeudEnfants());

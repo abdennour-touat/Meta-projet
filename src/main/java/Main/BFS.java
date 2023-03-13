@@ -23,11 +23,13 @@ public class BFS {
             nbrNdev++;
             n=ouvert.poll( );
 //            ferme.add(n);
-            if(n.verification() && n.evaluation()==0){ return n.getEtat();}
+            if(n.verification() ){
+                if (n.evaluation1() ){ return n.getEtat();}
+            }
 
-            if (n.successeurs()) {
+            if (n.evaluation1()) {
                 sizeInitial =ouvert.size();
-                    ouvert.addAll(n.getNoeudEnfants());
+                ouvert.addAll(n.getNoeudEnfants());
                 nbrNgen=nbrNgen+(ouvert.size() - sizeInitial);
             }
         }
