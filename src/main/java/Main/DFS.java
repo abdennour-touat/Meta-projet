@@ -1,10 +1,7 @@
 package Main;
 
-import Main.Node;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.Arrays;
 import java.util.Stack;
 //***Todo nombre de noeud generé et nbr de noeud develope
 public class DFS {
@@ -23,21 +20,17 @@ public  int nbrNdev=0,nbrNgen =1;
             while (!pile.isEmpty()){
                 nbrNdev++;
                 n=pile.pop();
-//            ferme.add(n);
 
-//                if (n.evaluation1()) return n.getEtat();
-                if(n.verification() ){
-                   if (n.evaluation1()){ return n.getEtat();}
+                if (n.evaluation1()) {
+                    System.out.println(Arrays.toString(n.getEtat()));
+                    if(n.verification() ){
+                        return n.getEtat();
+                    }
+
+                    sizeInitial =pile.size();
+                    pile.addAll(n.getNoeudEnfants());
+                    nbrNgen=nbrNgen+(pile.size() - sizeInitial);
                 }
-
-
-
-            if (n.evaluation1()) {
-
-                sizeInitial =pile.size();
-                pile.addAll(n.getNoeudEnfants());
-                nbrNgen=nbrNgen+(pile.size() - sizeInitial);
-            }
         }
 return null;
     }

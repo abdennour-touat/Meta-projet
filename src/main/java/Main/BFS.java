@@ -1,6 +1,7 @@
 package Main;
 
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 //***Todo nombre de noeud generé et nbr de noeud develope
@@ -22,12 +23,12 @@ public class BFS {
         while (!ouvert.isEmpty()){
             nbrNdev++;
             n=ouvert.poll( );
-//            ferme.add(n);
-            if(n.verification() ){
-                if (n.evaluation1() ){ return n.getEtat();}
-            }
 
             if (n.evaluation1()) {
+                if(n.verification() ){
+                    return n.getEtat();
+                }
+
                 sizeInitial =ouvert.size();
                 ouvert.addAll(n.getNoeudEnfants());
                 nbrNgen=nbrNgen+(ouvert.size() - sizeInitial);

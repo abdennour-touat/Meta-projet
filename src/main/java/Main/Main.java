@@ -1,7 +1,6 @@
 package Main;
 
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
@@ -10,9 +9,9 @@ public class Main {
     public static void main(String[] args) {
 
 
-        DFS bfs = new DFS();
+        BFS bfs = new BFS();
 
-        Node.n =30;
+        Node.n =9;
 
         long start = System.nanoTime();
         var result =bfs.Recherche(new Node(new int[0]));
