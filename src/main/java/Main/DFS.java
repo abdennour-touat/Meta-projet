@@ -27,6 +27,7 @@ public  int nbrNdev=0,nbrNgen =1;
 
                 if(n.verification() && n.evaluation()==0){ return n.getEtat();}
 
+
             if (n.successeurs()) {
 
                 sizeInitial =pile.size();

@@ -108,11 +108,13 @@ public class  Interface  extends Application {
                         break;
                     case "BFS":
                         BFS algoBfs = new BFS();
+
                          start = System.currentTimeMillis();
                         bestSol=algoBfs.Recherche(new Main.Node(new int[0]));
                          end = System.currentTimeMillis();
                         dev=algoBfs.nbrNdev;
                         gen=algoBfs.nbrNgen;
+
                         break;
                     default:
                         bestSol = new int[a];
