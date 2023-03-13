@@ -19,11 +19,8 @@
     -fx-font-family: "Comic Sans MS";
 }
 
-*{
-}
 .Side-bar {
-    -fx-background-color :  #342c2c;
-    
+    -fx-background-color :  #342c2c;   
 }
 .text-class {
     -fx-fill: white; /* change "red" to the color you want */

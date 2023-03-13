@@ -125,8 +125,7 @@ public class  Interface  extends Application {
 
                 if (content instanceof AnchorPane) {
                ap = (AnchorPane) content;
-                    ChessBoard chessBoard = new ChessBoard(a, bestSol,ap.getWidth());
-                    System.out.println(ap.getWidth());
+                    ChessBoard chessBoard = new ChessBoard(a, bestSol,ap.getWidth(), ap.getHeight());
 //                    AnchorPane.setTopAnchor(chessBoard, 0.0);
 //                    AnchorPane.setBottomAnchor(chessBoard, 0.0);
 //                    AnchorPane.setRightAnchor(chessBoard, 0.0);
