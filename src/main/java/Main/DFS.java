@@ -22,6 +22,7 @@ public  int nbrNdev=0,nbrNgen =1;
                 n=pile.pop();
 
                 if (n.evaluation1()) {
+
                     if(n.verification() ){
                         return n.getEtat();
                     }
