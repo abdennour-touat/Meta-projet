@@ -11,6 +11,7 @@ public class Node {
     public Boolean verification(){
             if (etat.length!= n) {
                 return false;};
+
             int i=0;
 
             while(i<n){
