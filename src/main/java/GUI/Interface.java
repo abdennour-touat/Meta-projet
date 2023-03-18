@@ -125,10 +125,12 @@ public class  Interface  extends Application {
                     default:
                         bestSol = new int[a];
                 }
+
 //                INFOS.setText("Infos: \n temps d execution "+(double)(end-start)+"ms\n"+"NOMBRE DE NOEUDS GENERE "+gen+"\nNOMBRE DE NOEUDS DEVELOPE "+dev);
                 exe.setText((double)(end-start) + " ms");
                 ngen.setText(gen+"");
                 ndev.setText(dev+"");
+
 
                 if (content instanceof AnchorPane) {
                ap = (AnchorPane) content;
