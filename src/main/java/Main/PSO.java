@@ -3,8 +3,6 @@ package Main;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 public class PSO {
     public int n;
@@ -13,7 +11,7 @@ public class PSO {
         this.n = n;
     }
 
-    public Individu search(int n, int nbPop, int nbIteration) {
+    public Individu search(int nbPop, int nbIteration, double c1, double c2) {
         ArrayList<Noeud> population;
         ArrayList<IntArrayList> pBest;
         IntArrayList gBest = null;
@@ -22,8 +20,8 @@ public class PSO {
         pBest = new ArrayList<>();
         ArrayList<Integer> pBestFitness = new ArrayList<>();
         for (int i = 0; i < nbPop; i++) {
-            var  rand = Noeud.generateRandomState(n);
-            var copie = (IntArrayList)rand.clone();
+            var rand = Noeud.generateRandomState(n);
+            var copie = (IntArrayList) rand.clone();
 
             population.add(new Noeud(copie));
             pBest.add(rand);
@@ -36,34 +34,32 @@ public class PSO {
         System.out.println("gBest = " + gBest + " " + gBestFitness);
         int i = 0;
         while (i < nbIteration) {
-//            System.out.println("iteration numero : "+i);
             for (int j = 0; j < nbPop; j++) {
                 double r1 = Math.random();
-                var p = population.get(j);
-                if(r1 < 0.40){
-                    p = croisement(p.getEtat(), gBest);
-//                    population.set(j,croisement(population.get(j).getEtat(), gBest));
-                } else if (r1 < 0.60 && r1 > 0.40) {
-                    p = croisement(p.getEtat(), pBest.get(j));
-//                    population.set(j, croisement(population.get(j).getEtat(), pBest.get(j)));
+                if (r1 < c1) {
+                    population.set(j, croisement(population.get(j).getEtat(), gBest));
+                } else if (r1 < c2 && r1 > c1) {
+                    population.set(j, croisement(population.get(j).getEtat(), pBest.get(j)));
                 } else {
-                    p = croisement(p.getEtat(), Noeud.generateRandomState(n));
-//                    population.set(j,croisement(pBest.get(j), Noeud.generateRandomState(n)));
+                    population.set(j, croisement(pBest.get(j), Noeud.generateRandomState(n)));
                 }
-                Noeud newNoeud = new Noeud(p.getEtat());
-                population.set(j, newNoeud);
-                if (newNoeud.cal_fitness() < pBestFitness.get(j)){
-                        pBest.set(j, population.get(j).getEtat());
-                        pBestFitness.set(j, population.get(j).cal_fitness());
-                    if (pBestFitness.get(j) < gBestFitness) {
+                var fit = population.get(j).cal_fitness();
+                if (fit < pBestFitness.get(j)) {
+                    pBest.set(j, population.get(j).getEtat());
+                    pBestFitness.set(j, fit);
+                    if (fit < gBestFitness) {
                         System.out.println("i = " + i + " j = " + j);
-                        System.out.println("gBest = " + gBest + " " + gBestFitness);
-                        gBest = pBest.get(j);
-                        gBestFitness = pBestFitness.get(j);
+                        System.out.println("gBest = " + gBest + " ");
+                        System.out.println("gBestFitness = " + gBestFitness);
                     }
-                    if (gBestFitness == 0) break;
+                    if (fit <= gBestFitness) {
+                        gBest = pBest.get(j);
+                        gBestFitness = fit;
+
+                    }
                 }
             }
+            if (gBestFitness == 0) break;
             i++;
         }
 
@@ -75,43 +71,44 @@ public class PSO {
         return x;
     }
 
-    private static Noeud croisement  (IntArrayList Noeud1, IntArrayList Noeud2) {
+    private static Noeud croisement(IntArrayList Noeud1, IntArrayList Noeud2) {
         IntArrayList child = new IntArrayList();
         //partition the parents into 2 parts and then swap them
-        int partition = (int) Math.floor(Math.random() * Noeud1.size());
-//        int partition = (int) Noeud1.size()/2;
-        var rnd  = Math.random();
-        if (rnd < 0.5) {
+        int partition = (int) Math.floor(Math.random() * Noeud1.size() /4);
+
+        var rnd = Math.random();
+        if (rnd < 0.30) {
             for (int i = 0; i < partition; i++) {
                 child.add(Noeud1.getInt(i));
             }
-            int j =0 ;
+            int j = 0;
 
-            while(child.size() < Noeud2.size()){
-                if (!child.contains(Noeud2.getInt(j))){
+            while (child.size() < Noeud2.size()) {
+                if (!child.contains(Noeud2.getInt(j))) {
                     child.add(Noeud2.getInt(j));
                 }
                 j++;
                 j = j % Noeud1.size();
             }
-//            for (int i = partition; i < Noeud2.size(); i++) {
-//                child.add(Noeud2.get(i));
-//            }
         } else {
             for (int i = partition; i < Noeud2.size(); i++) {
                 child.add(Noeud2.get(i));
             }
             int j = 0;
-            while(child.size() < Noeud1.size()){
-                if (!child.contains(Noeud1.getInt(j))){
+            while (child.size() < Noeud1.size()) {
+                if (!child.contains(Noeud1.getInt(j))) {
                     child.add(Noeud1.getInt(j));
                 }
                 j++;
                 j = j % Noeud1.size();
             }
-//            for (int i = 0; i < partition; i++) {
-//                child.add(Noeud2.get(i));
-//            }
+            // swap two random elements
+            int index1 = (int) Math.floor(Math.random() * Noeud1.size());
+            int index2 = (int) Math.floor(Math.random() * Noeud1.size());
+            int temp1 = child.get(index1);
+            int temp2 = child.get(index2);
+            child.set(index1, temp2);
+            child.set(index2, temp1);
         }
         return new Noeud(child);
     }
